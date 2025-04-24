@@ -1,4 +1,7 @@
 class PhoneBook:
+    def __init__(self):
+        self.size = 0
+
     def create(
         self,
         *,
@@ -15,8 +18,9 @@ class PhoneBook:
             f.write(
                 f"{first_name} {last_name} {second_name} {work_phone_number} {personal_phone_number} {organization}\n"
             )
+            self.size += 1
 
-    def edit():
+    def edit(id: int):
         pass
 
     def find(

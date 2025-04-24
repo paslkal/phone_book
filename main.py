@@ -4,7 +4,7 @@ def main():
     phone_book = PhoneBook()
     print(f"List of commands:")
     print(f"- see --- see whole phone book")
-    print(f"- find --- find person by phone number")
+    print(f"- find --- find person by personal phone number")
     print(f"- create --- create a new person in phone book", end="\n\n")
     while True:
         command = input().split()
@@ -41,7 +41,8 @@ def main():
                 print(f'Person was created!')
         elif len(command) == 2 and command[0] == "find":
             print(phone_book.find(command[1]))
-
+        else:
+            print("There's no such command")
 
 if __name__ == "__main__":
     main()

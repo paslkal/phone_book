@@ -1,5 +1,6 @@
 from phone_book import PhoneBook
 
+
 def main():
     phone_book = PhoneBook()
     print(f"List of commands:")
@@ -12,6 +13,8 @@ def main():
             if command[0] == "see":
                 print("============================PHONE BOOK==================")
                 people = phone_book.get_data().values()
+                if len(people) == 0:
+                    print("There's no people in phone book")
                 for person in people:
                     for info in person.values():
                         print(info, end=" ")
@@ -19,16 +22,34 @@ def main():
                 print("========================================================")
             elif command[0] == "create":
                 first_name = input("First Name:")
+                while " " in first_name:
+                    print("First Name must consist of one word")
+                    first_name = input("First Name:")
 
-                second_name = input("Second Name:")
+                second_name = input("Second Name")
+                while " " in second_name:
+                    print("Second Name must consist of one word")
+                    second_name = input("Second Name")
 
                 last_name = input("Last Name:")
+                while " " in last_name:
+                    print("Last Name must consist of one word")
+                    last_name = input("Last Name:")
 
-                work_phone_number = input("Work Phone Number")
+                work_phone_number = input("Work Phone Number:")
+                while " " in work_phone_number:
+                    print(f"Work Phone Number must consist of one word")
+                    work_phone_number = input("Work Phone Number:")
 
-                personal_phone_number = input("Personal Phone Number")
+                personal_phone_number = input("Personal Phone Number:")
+                while " " in personal_phone_number:
+                    print(f"Personal Phone Number must consist of one word")
+                    personal_phone_number = input("Personal Phone Number:")
 
-                organization = input("Organization")
+                organization = input("Organization:")
+                while " " in organization:
+                    print("Organization must consist of one word")
+                    organization = input("Organization:")
 
                 phone_book.create(
                     first_name=first_name,
@@ -38,11 +59,12 @@ def main():
                     personal_phone_number=personal_phone_number,
                     organization=organization,
                 )
-                print(f'Person was created!')
+                print(f"Person is created!")
         elif len(command) == 2 and command[0] == "find":
             print(phone_book.find(command[1]))
         else:
             print("There's no such command")
+
 
 if __name__ == "__main__":
     main()

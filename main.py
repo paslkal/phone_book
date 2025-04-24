@@ -9,6 +9,8 @@ class PhoneBook:
         work_phone_number: str,
         organization: str,
     ):
+        """добавляет новую информацию в конец файла"""
+
         with open("phone_book.txt", "a+", encoding="utf-8") as f:
             f.write(
                 f"{first_name} {last_name} {second_name} {work_phone_number} {personal_phone_number} {organization}\n"
@@ -21,6 +23,8 @@ class PhoneBook:
         self,
         personal_phone_number=None | str,
     ) -> list[str]:
+        """находит человека по номеру телефона"""
+
         phone_to_person = self.get_data()
         if personal_phone_number is not None:
             if personal_phone_number in phone_to_person:
@@ -29,6 +33,11 @@ class PhoneBook:
                 ]
 
     def get_data(self) -> dict[str, dict]:
+        """
+        читает данные в файле и возвращает в виде словаря,
+        в котором ключ -- номер телефона, а значение -- словарь со всеми данными о человеке
+        """
+
         with open("phone_book.txt", "r", encoding="utf-8") as f:
             string_people = f.readlines()
             dict_people = {}
@@ -41,6 +50,8 @@ class PhoneBook:
             return dict_people
 
     def from_string_to_dict(self, string: str):
+        """превращает строку с данными в словарь"""
+
         (
             first_name,
             second_name,
@@ -62,6 +73,8 @@ class PhoneBook:
         return person
 
     def from_dict_to_string(self, person: dict):
+        """преобразует словарь с данными о человеке в строку"""
+        
         return f"{person['first_name']} {person['second_name']} {person['last_name']} {person['work_phone_number']} {person['personal_phone_number']} {person['organization']}"
 
 

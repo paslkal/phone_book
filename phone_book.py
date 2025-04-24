@@ -49,7 +49,7 @@ class PhoneBook:
 
             return dict_people
 
-    def from_string_to_dict(self, string: str):
+    def from_string_to_dict(self, string: str) -> dict[str, str]:
         """превращает строку с данными в словарь"""
 
         (
@@ -72,7 +72,7 @@ class PhoneBook:
 
         return person
 
-    def from_dict_to_string(self, person: dict):
+    def from_dict_to_string(self, person: dict[str, str]) -> str:
         """преобразует словарь с данными о человеке в строку"""
 
         return f"{person['first_name']} {person['second_name']} {person['last_name']} {person['work_phone_number']} {person['personal_phone_number']} {person['organization']}"

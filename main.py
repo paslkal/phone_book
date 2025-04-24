@@ -1,5 +1,5 @@
 class PhoneBook:
-    def add(
+    def create(
         self,
         *,
         first_name: str,
@@ -21,16 +21,16 @@ class PhoneBook:
 
     def find(
         self,
-        personal_phone_number=None | str,
-    ) -> list[str]:
+        personal_phone_number: str,
+    ) -> str:
         """находит человека по номеру телефона"""
 
         phone_to_person = self.get_data()
         if personal_phone_number is not None:
             if personal_phone_number in phone_to_person:
-                return [
-                    self.from_dict_to_string(phone_to_person[personal_phone_number])
-                ]
+                return self.from_dict_to_string(phone_to_person[personal_phone_number])
+
+        return "Not found"
 
     def get_data(self) -> dict[str, dict]:
         """
@@ -74,18 +74,52 @@ class PhoneBook:
 
     def from_dict_to_string(self, person: dict):
         """преобразует словарь с данными о человеке в строку"""
-        
+
         return f"{person['first_name']} {person['second_name']} {person['last_name']} {person['work_phone_number']} {person['personal_phone_number']} {person['organization']}"
 
 
-phone_book = PhoneBook()
-# phone_book.add(
-#     work_phone_number="+79778549563",
-#     personal_phone_number="+79778549563",
-#     first_name="Паскаль",
-#     second_name="Синдайихебура",
-#     last_name="Этьенович",
-#     organization="АВ-СОФТ",
-# )
-# print(phone_book.get_data())
-# print(phone_book.find('+79778549563'))
+def main():
+    phone_book = PhoneBook()
+    print(f"List of commands:")
+    print(f"- see --- see whole phone book")
+    print(f"- find --- find person by phone number")
+    print(f"- create --- create a new person in phone book", end="\n\n")
+    while True:
+        command = input().split()
+        if len(command) == 1:
+            if command[0] == "see":
+                print("============================PHONE BOOK==================")
+                people = phone_book.get_data().values()
+                for person in people:
+                    for info in person.values():
+                        print(info, end=" ")
+                    print()
+                print("========================================================")
+            elif command[0] == "create":
+                first_name = input("First Name:")
+
+                second_name = input("Second Name:")
+
+                last_name = input("Last Name:")
+
+                work_phone_number = input("Work Phone Number")
+
+                personal_phone_number = input("Personal Phone Number")
+
+                organization = input("Organization")
+
+                phone_book.create(
+                    first_name=first_name,
+                    second_name=second_name,
+                    last_name=last_name,
+                    work_phone_number=work_phone_number,
+                    personal_phone_number=personal_phone_number,
+                    organization=organization,
+                )
+                print(f'Person was created!')
+        elif len(command) == 2 and command[0] == "find":
+            print(phone_book.find(command[1]))
+
+
+if __name__ == "__main__":
+    main()

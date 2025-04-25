@@ -1,13 +1,19 @@
 from phone_book import PhoneBook
 
 
-def main():
-    phone_book = PhoneBook()
+def help():
     print(f"List of commands:")
     print(f"- see --- see whole phone book")
     print(f"- find --- find person by personal phone number")
     print(f"- create --- create a new person in phone book")
     print(f"- edit --- edit info about person")
+    print(f"- help --- print list of commands")
+    print(f"- exit --- exit from program")
+
+
+def main():
+    phone_book = PhoneBook()
+    help()
     while True:
         print(">", end=" ")
         command = input().split()
@@ -70,7 +76,65 @@ def main():
             else:
                 print(phone_book.find(command[1]))
         elif command[0] == "edit":
-            print("edited")
+            if len(command) == 1:
+                print("There's no id to specify which person to edit")
+            else:
+                id = command[1]
+                if not id.isdigit():
+                    print("Enter valid id")
+                    continue
+                else:
+                    id = int(id)
+
+                if id > phone_book.size:
+                    # print(f'{phone_book.size=}')
+                    # print(f'{id=}')
+                    print("Enter valid id")
+                    continue
+
+                first_name = second_name = last_name = personal_phone_number = (
+                    work_phone_number
+                ) = organization = None
+
+                answer = input("Do you want to change First Name? (y/n) ")
+                if answer == "y":
+                    first_name = input("First Name:")
+
+                answer = input("Do you want to change Second Name? (y/n) ")
+                if answer == "y":
+                    second_name = input("Second Name:")
+
+                answer = input("Do you want to change Last Name? (y/n) ")
+                if answer == "y":
+                    last_name = input("Last Name:")
+
+                answer = input("Do you want to change work phone number? (y/n) ")
+                if answer == "y":
+                    work_phone_number = input("Work Phone Number:")
+
+                answer = input("Do you want to change personal phone number? (y/n) ")
+                if answer == "y":
+                    personal_phone_number = input("Personal number:")
+
+                answer = input("Do you want to change organization? (y/n) ")
+                if answer == "y":
+                    organization = input("Organization:")
+
+                phone_book.edit(
+                    id=id,
+                    first_name=first_name,
+                    second_name=second_name,
+                    last_name=last_name,
+                    personal_phone_number=personal_phone_number,
+                    work_phone_number=work_phone_number,
+                    organization=organization,
+                )
+
+                print("\nInformation has been changed")
+        elif command[0] == "help":
+            help()
+        elif command[0] == "exit":
+            break
         else:
             print("There's no such command")
 

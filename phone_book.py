@@ -55,9 +55,6 @@ class PhoneBook:
             person["organization"] = organization
 
         data[id - 1] = self.from_dict_to_string(person) + "\n"
-        # print(data)
-        # print(self.from_dict_to_string(person))
-        # print(first_name)
 
         with open("phone_book.txt", "w", encoding="utf-8") as f:
             f.writelines(data)

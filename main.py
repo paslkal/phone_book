@@ -87,8 +87,6 @@ def main():
                     id = int(id)
 
                 if id > phone_book.size:
-                    # print(f'{phone_book.size=}')
-                    # print(f'{id=}')
                     print("Enter valid id")
                     continue
 

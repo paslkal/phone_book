@@ -2,10 +2,10 @@ import os
 
 class PhoneBook:
     def __init__(self):
-        with open("phone_book.txt", "r", encoding="utf-8") as f:
-            if not os.path.exists('phone_book.txt'):
-                self.size = 0
-            else:
+        if not os.path.exists('phone_book.txt'):
+            self.size = 0
+        else:
+            with open("phone_book.txt", "r", encoding="utf-8") as f:
                 self.size = len(f.readlines())
 
     def create(

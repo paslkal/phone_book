@@ -1,6 +1,6 @@
 class PhoneBook:
     def __init__(self):
-        with open('phone_book.txt', 'r', encoding='utf-8') as f:
+        with open("phone_book.txt", "r", encoding="utf-8") as f:
             self.size = len(f.readlines())
 
     def create(
@@ -73,7 +73,7 @@ class PhoneBook:
 
         return "Not found"
 
-    def get_data(self, page = 1) -> dict[str, dict[str, str]]:
+    def get_data(self, page=1) -> dict[str, dict[str, str]]:
         """
         читает данные в файле и возвращает в виде словаря,
         в котором ключ -- номер телефона, а значение -- словарь со всеми данными о человеке
@@ -82,7 +82,7 @@ class PhoneBook:
         with open("phone_book.txt", "r", encoding="utf-8") as f:
             string_people = f.readlines()
             dict_people = {}
-            for i in range((page-1)*10, min(len(string_people), page*10)):
+            for i in range((page - 1) * 10, min(len(string_people), page * 10)):
                 string_person = string_people[i]
                 if string_people == " ":
                     continue
@@ -133,7 +133,8 @@ class PhoneBook:
 
         return person
 
+
     def from_dict_to_string(self, person: dict[str, str]) -> str:
         """преобразует словарь с данными о человеке в строку"""
 
-        return f"{person["id"]} {person['first_name']} {person['second_name']} {person['last_name']} {person['work_phone_number']} {person['personal_phone_number']} {person['organization']}"
+        return f"{person['id']} {person['first_name']} {person['second_name']} {person['last_name']} {person['work_phone_number']} {person['personal_phone_number']} {person['organization']}"

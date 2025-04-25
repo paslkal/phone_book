@@ -21,8 +21,14 @@ def main():
             continue
 
         if command[0] == "see":
+            page = 1
+            if len(command) > 1 and command[1].isdigit():
+                page = int(command[1])
+            if (page-1)*10 > phone_book.size:
+                print("There's no such page")
+                continue
             print("============================PHONE BOOK============================")
-            people = phone_book.get_data().values()
+            people = phone_book.get_data(page).values()
             if len(people) == 0:
                 print("There's no people in phone book")
             for person in people:

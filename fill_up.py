@@ -8,7 +8,7 @@ for _ in range(100):
         second_name='Ptushkin',
         last_name='Sanalovich',
         personal_phone_number=str(random.randint(10**4, 10**5)),
-        work_phone_number='1328123123',
-        organization='Jicy Ducy'
+        work_phone_number=str(random.randint(10**5, 10**6)),
+        organization='Jicy-Ducy'
     )
 
